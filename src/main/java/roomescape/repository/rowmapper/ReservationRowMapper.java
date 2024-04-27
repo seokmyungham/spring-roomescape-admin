@@ -1,4 +1,4 @@
-package roomescape.repository.reservation;
+package roomescape.repository.rowmapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

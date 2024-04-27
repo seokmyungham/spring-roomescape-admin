@@ -1,4 +1,4 @@
-package roomescape.repository.time;
+package roomescape.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -14,7 +14,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import roomescape.domain.ReservationTime;
-import roomescape.repository.DatabaseCleanupListener;
+import roomescape.domain.ReservationTimeRepository;
+import roomescape.repository.rowmapper.ReservationTimeRowMapper;
 
 @TestExecutionListeners(value = {
         DatabaseCleanupListener.class,

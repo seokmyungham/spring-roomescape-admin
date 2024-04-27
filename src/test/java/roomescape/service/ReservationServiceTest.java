@@ -1,4 +1,4 @@
-package roomescape.service.reservation;
+package roomescape.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -14,9 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import roomescape.domain.Reservation;
-import roomescape.repository.reservation.ReservationRepository;
-import roomescape.service.reservation.dto.ReservationRequestDto;
-import roomescape.service.reservation.dto.ReservationResponseDto;
+import roomescape.domain.ReservationRepository;
+import roomescape.service.dto.ReservationRequestDto;
+import roomescape.service.dto.ReservationResponseDto;
 
 @ExtendWith(MockitoExtension.class)
 class ReservationServiceTest {
