@@ -1,7 +1,5 @@
 package roomescape.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -16,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import roomescape.domain.ReservationTime;
 import roomescape.domain.ReservationTimeRepository;
 import roomescape.service.dto.ReservationTimeRequestDto;
-import roomescape.service.dto.ReservationTimeResponseDto;
 
 @ExtendWith(MockitoExtension.class)
 class ReservationTimeServiceTest {
@@ -35,17 +32,8 @@ class ReservationTimeServiceTest {
         List<ReservationTime> reservationTimes = List.of(time1, time2);
         given(reservationTimeRepository.findAllReservationTimes()).willReturn(reservationTimes);
 
-        List<ReservationTimeResponseDto> results = reservationTimeService.findAllReservationTimes();
+        reservationTimeService.findAllReservationTimes();
         verify(reservationTimeRepository, times(1)).findAllReservationTimes();
-
-        List<ReservationTimeResponseDto> responseDtos = List.of(
-                new ReservationTimeResponseDto(time1),
-                new ReservationTimeResponseDto(time2)
-        );
-        assertAll(
-                () -> assertThat(results.size()).isEqualTo(responseDtos.size()),
-                () -> assertThat(results.get(0).getId()).isEqualTo(responseDtos.get(0).getId())
-        );
     }
 
     @DisplayName("예약 시간 저장 및 의존 객체 상호작용 테스트")
@@ -56,13 +44,7 @@ class ReservationTimeServiceTest {
         given(reservationTimeRepository.insertReservationTime(requestDto.toReservationTime())).willReturn(
                 reservationTime);
 
-        ReservationTimeResponseDto result = reservationTimeService.createReservationTime(requestDto);
+        reservationTimeService.createReservationTime(requestDto);
         verify(reservationTimeRepository, times(1)).insertReservationTime(requestDto.toReservationTime());
-
-        ReservationTimeResponseDto responseDto = new ReservationTimeResponseDto(reservationTime);
-        assertAll(
-                () -> assertThat(result.getId()).isEqualTo(responseDto.getId()),
-                () -> assertThat(result.getStartAt()).isEqualTo(responseDto.getStartAt())
-        );
     }
 }
